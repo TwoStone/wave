@@ -7,6 +7,9 @@ global:
   rbac:
     enabled: true
 
+  pdb:
+    enabled: true
+
 # Annotations for the wave pods
 annotations: {}
 image:
