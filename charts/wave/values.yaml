@@ -20,6 +20,12 @@ image:
 # Node selector for the wave pods
 nodeSelector: {}
 
+# Tolerations for the wave pods
+tolerations: []
+
+# Affinity for the wave pods
+affinity: {}
+
 # Replicas > 1 will enable leader election
 replicas: 1
 
