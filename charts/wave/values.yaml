@@ -12,6 +12,9 @@ global:
 
 # Annotations for the wave pods
 annotations: {}
+
+podAnnotations: {}
+
 image:
   name: quay.io/wave-k8s/wave
   tag: v0.5.0
@@ -24,7 +27,18 @@ nodeSelector: {}
 tolerations: []
 
 # Affinity for the wave pods
-affinity: {}
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: "app.kubernetes.io/name"
+                operator: In
+                values:
+                  - wave
+          topologyKey: "kubernetes.io/hostname"
+        weight: 100
 
 # Replicas > 1 will enable leader election
 replicas: 1
