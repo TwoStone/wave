@@ -58,3 +58,5 @@ serviceAccount:
 
 # Period for reconciliation
 # syncPeriod: 5m
+
+resources: {}
