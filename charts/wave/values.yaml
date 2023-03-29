@@ -7,8 +7,14 @@ global:
   rbac:
     enabled: true
 
+  pdb:
+    enabled: true
+
 # Annotations for the wave pods
 annotations: {}
+
+podAnnotations: {}
+
 image:
   name: quay.io/wave-k8s/wave
   tag: v0.5.0
@@ -16,6 +22,23 @@ image:
 
 # Node selector for the wave pods
 nodeSelector: {}
+
+# Tolerations for the wave pods
+tolerations: []
+
+# Affinity for the wave pods
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: "app.kubernetes.io/name"
+                operator: In
+                values:
+                  - wave
+          topologyKey: "kubernetes.io/hostname"
+        weight: 100
 
 # Replicas > 1 will enable leader election
 replicas: 1
@@ -35,3 +58,5 @@ serviceAccount:
 
 # Period for reconciliation
 # syncPeriod: 5m
+
+resources: {}

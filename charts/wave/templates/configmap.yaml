@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-{{ include "wave-labels.chart" . | indent 4 }}
-  name: {{ template "wave-fullname" . }}
+    {{ include "wave.labels" . | nindent 4 }}
+  name: {{ template "wave.fullname" . }}
 data:
 {{- end }}
